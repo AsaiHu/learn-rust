@@ -1,7 +1,6 @@
 ## cargo
 
-
-
+- `cargo new` 创建项目
 - `cargo build` 构建项目。
 - `cargo run` 一步构建并运行项目。
 - `cargo check` 在不生成二进制文件的情况下构建项目来检查错误。
@@ -10,7 +9,7 @@
 
 
 
- *Cargo.toml* :Cargo配置文件，在[dependencies]下面列出依赖，在 Rust 中，代码包被称为 *crates*
+ *Cargo.toml* :Cargo配置文件，在`[dependencies]`下面列出依赖，在 Rust 中，代码包被称为 *crates*
 
 
 
