@@ -255,17 +255,29 @@ Rust 中默认所有项（函数、方法、结构体、枚举、模块和常量
 
 `Entry` 的 `or_insert` 方法在键对应的值存在时就返回这个值的可变引用，如果不存在则将参数作为新值插入并返回新值的可变引用
 
-`HashMap` 默认使用一种叫做 SipHash 的哈希函数，它可以抵御涉及哈希表（hash table）[1](https://kaisery.github.io/trpl-zh-cn/ch08-03-hash-maps.html#siphash) 的拒绝服务（Denial of Service, DoS）攻击
+`HashMap` 默认使用一种叫做 SipHash 的哈希函数，它可以抵御涉及哈希表的DoS攻击
 
 
 
+#### 错误处理
 
 
 
+Rust 将错误分为两大类：**可恢复的**和 **不可恢复的**错误。
 
+ `panic!`宏。当执行这个宏时，程序会打印出一个错误信息，展开并清理栈数据，然后接着退出
 
+panic = 'abort'，直接终止，由操作系统来清理内存
 
+*backtrace* 是一个执行到目前位置所有被调用的函数的列表
 
+`unwrap`：打开，如果 `Result` 值是成员 `Ok`，`unwrap` 会返回 `Ok` 中的值。如果 `Result` 是成员 `Err`，`unwrap` 会为我们调用 `panic!`
+
+`expect`:在`unwarp`基础上自己指定错误信息
+
+**传播**（*propagating*）错误：让调用者知道这个错误并决定该如何处理，简写：`?` 运算符，只能被用于返回值与 `?` 作用的值相兼容的函数，`?` 也可用于 `Option<T>` 值
+
+对任何错误场景都调用 `panic!`，不管是否有可能恢复，这样就是代替调用者决定了这是不可恢复的。选择返回 `Result` 值的话，就将选择权交给了调用者，而不是代替他们做出决定
 
 
 
